@@ -1,0 +1,20 @@
+# Arduino IDE 临时文件
+*.tmp
+*.log
+*.bak
+*.orig
+build/
+.cache/
+
+# 平台相关文件
+.DS_Store
+Thumbs.db
+.vscode/
+.vs/
+*.user
+
+# Arduino 编译产物
+*.hex
+*.elf
+*.bin
+*.map
