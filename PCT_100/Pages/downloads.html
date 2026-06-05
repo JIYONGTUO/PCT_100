@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>下载中心 - PCT-100 化工控制实训装置</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <div class="logo">PCT-100</div>
+    <ul>
+      <li><a href="index.html">产品说明书</a></li>
+      <li><a href="guide.html">快速上手</a></li>
+      <li><a href="downloads.html" class="active">下载中心</a></li>
+    </ul>
+  </nav>
+
+  <!-- 主体 -->
+  <div class="main-container">
+    <!-- 左侧锚点菜单 -->
+    <aside class="sidebar">
+      <h3>资源分类</h3>
+      <ul>
+        <li><a href="#firmware">固件与源码</a></li>
+        <li><a href="#docs">技术文档</a></li>
+        <li><a href="#tools">开发工具</a></li>
+        <li><a href="#libs">依赖库</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <h1>下载中心</h1>
+      <p class="subtitle">固件源码、技术文档、开发工具与依赖库的一站式下载入口</p>
+
+      <!-- 固件与源码 -->
+      <section id="firmware">
+        <h2>固件与源码</h2>
+
+        <div class="download-card">
+          <h3>PCT-100 V1.2 完整源码</h3>
+          <p>最新稳定版本，包含主程序、显示模块、传感器管理、WiFi/MQTT 通信、Web UI 等全部功能模块。适用于 PlatformIO 开发环境。</p>
+          <span class="tag">Arduino</span>
+          <span class="tag">ESP32</span>
+          <span class="tag">PlatformIO</span>
+          <br><br>
+          <a href="#" class="btn">下载 ZIP</a>
+          <a href="#" class="btn" style="background:#34a853;">浏览 GitHub</a>
+        </div>
+
+        <div class="download-card">
+          <h3>PCT-100 V1.0.0 旧版源码</h3>
+          <p>早期 FreeRTOS 双任务架构版本，适合学习 FreeRTOS 任务调度与 LED 动画编程。功能相对简单，无 HTTP API。</p>
+          <span class="tag">FreeRTOS</span>
+          <span class="tag">历史版本</span>
+          <br><br>
+          <a href="#" class="btn">下载 ZIP</a>
+        </div>
+
+        <div class="download-card">
+          <h3>硬件诊断工具</h3>
+          <p>独立诊断程序，用于检测 GPIO 引脚通断、ADC 读数、I2C 设备扫描、OneWire 设备探测等。</p>
+          <span class="tag">诊断</span>
+          <span class="tag">调试</span>
+          <br><br>
+          <a href="#" class="btn">下载 ZIP</a>
+        </div>
+
+        <div class="download-card">
+          <h3>GPIO 扫描工具</h3>
+          <p>快速扫描 ESP32 所有 GPIO 引脚状态，辅助排查接线与硬件冲突问题。</p>
+          <span class="tag">工具</span>
+          <span class="tag">诊断</span>
+          <br><br>
+          <a href="#" class="btn">下载 ZIP</a>
+        </div>
+      </section>
+
+      <!-- 技术文档 -->
+      <section id="docs">
+        <h2>技术文档</h2>
+
+        <div class="download-card">
+          <h3>PCT-100 产品说明书（PDF）</h3>
+          <p>完整版产品说明书，涵盖硬件规格、引脚定义、传感器系统、通信协议、故障排查等内容，适合打印或离线查阅。</p>
+          <span class="tag">PDF</span>
+          <span class="tag">说明书</span>
+          <br><br>
+          <a href="#" class="btn">下载 PDF</a>
+        </div>
+
+        <div class="download-card">
+          <h3>ESP32-DevKitC 数据手册</h3>
+          <p>乐鑫官方 ESP32-DevKitC 开发板数据手册，包含电气特性、引脚功能、功耗参数等详细技术规格。</p>
+          <span class="tag">数据手册</span>
+          <span class="tag">官方文档</span>
+          <br><br>
+          <a href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/hw-reference/esp32/get-started-devkitc.html" target="_blank" class="btn">查看官网</a>
+        </div>
+
+        <div class="download-card">
+          <h3>SH1106 OLED 模块规格书</h3>
+          <p>SH1106 驱动芯片数据手册，包含 I2C 通信时序、命令集、初始化流程等技术细节。</p>
+          <span class="tag">显示屏</span>
+          <span class="tag">规格书</span>
+          <br><br>
+          <a href="#" class="btn">下载 PDF</a>
+        </div>
+
+        <div class="download-card">
+          <h3>DS18B20 温度传感器数据手册</h3>
+          <p>Maxim Integrated 官方 DS18B20 数据手册，涵盖 1-Wire 协议、温度转换时间、精度规格等。</p>
+          <span class="tag">传感器</span>
+          <span class="tag">官方文档</span>
+          <br><br>
+          <a href="https://www.analog.com/media/en/technical-documentation/data-sheets/ds18b20.pdf" target="_blank" class="btn">查看官网</a>
+        </div>
+      </section>
+
+      <!-- 开发工具 -->
+      <section id="tools">
+        <h2>开发工具</h2>
+
+        <div class="download-card">
+          <h3>Visual Studio Code</h3>
+          <p>微软开源代码编辑器，配合 PlatformIO 插件即可搭建完整的 ESP32 开发环境。支持 Windows、macOS 和 Linux。</p>
+          <span class="tag">IDE</span>
+          <span class="tag">免费</span>
+          <br><br>
+          <a href="https://code.visualstudio.com/" target="_blank" class="btn">前往官网</a>
+        </div>
+
+        <div class="download-card">
+          <h3>MQTTX 客户端</h3>
+          <p>跨平台 MQTT 5.0 桌面客户端，支持连接测试、消息订阅/发布、JSON 格式化显示。测试 PCT-100 远程控制的首选工具。</p>
+          <span class="tag">MQTT</span>
+          <span class="tag">跨平台</span>
+          <br><br>
+          <a href="https://mqttx.app/" target="_blank" class="btn">前往官网</a>
+        </div>
+
+        <div class="download-card">
+          <h3>CH340 驱动程序</h3>
+          <p>南京沁恒 CH340/CH341 USB 转串口芯片驱动，适用于搭载 CH340 的 ESP32 开发板。支持 Windows / macOS / Linux。</p>
+          <span class="tag">驱动</span>
+          <span class="tag">USB</span>
+          <br><br>
+          <a href="http://www.wch.cn/downloads/CH341SER_ZIP.html" target="_blank" class="btn">前往官网</a>
+        </div>
+
+        <div class="download-card">
+          <h3>CP2102 驱动程序</h3>
+          <p>Silicon Labs CP210x USB 转串口驱动，适用于搭载 CP2102 的 ESP32 开发板。</p>
+          <span class="tag">驱动</span>
+          <span class="tag">USB</span>
+          <br><br>
+          <a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" target="_blank" class="btn">前往官网</a>
+        </div>
+      </section>
+
+      <!-- 依赖库 -->
+      <section id="libs">
+        <h2>依赖库</h2>
+        <p>以下 Arduino 库均为 PCT-100 项目编译所需，PlatformIO 通常会在首次编译时自动下载。如需离线安装，可从 PlatformIO Registry 或 GitHub 获取。</p>
+
+        <table class="data-table">
+          <thead>
+            <tr><th>库名</th><th>版本</th><th>来源</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>U8g2</td>
+              <td>^2.34.0</td>
+              <td><a href="https://github.com/olikraus/u8g2" target="_blank">GitHub</a></td>
+            </tr>
+            <tr>
+              <td>Adafruit NeoPixel</td>
+              <td>^1.12.0</td>
+              <td><a href="https://github.com/adafruit/Adafruit_NeoPixel" target="_blank">GitHub</a></td>
+            </tr>
+            <tr>
+              <td>OneWire</td>
+              <td>^2.3.0</td>
+              <td><a href="https://github.com/PaulStoffregen/OneWire" target="_blank">GitHub</a></td>
+            </tr>
+            <tr>
+              <td>DallasTemperature</td>
+              <td>^3.9.0</td>
+              <td><a href="https://github.com/milesburton/Arduino-Temperature-Control-Library" target="_blank">GitHub</a></td>
+            </tr>
+            <tr>
+              <td>PubSubClient</td>
+              <td>^2.8</td>
+              <td><a href="https://github.com/knolleary/pubsubclient" target="_blank">GitHub</a></td>
+            </tr>
+            <tr>
+              <td>ArduinoJson</td>
+              <td>^6.21.0</td>
+              <td><a href="https://github.com/bblanchon/ArduinoJson" target="_blank">GitHub</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>© 2026 PCT-100 Project V1.2</footer>
+
+</body>
+</html>
