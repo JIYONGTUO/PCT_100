@@ -8,9 +8,8 @@
 </head>
 <body>
 
-  <!-- 顶部导航 -->
   <nav class="top-nav">
-    <div class="logo">PCT-100</div>
+    <div class="logo">PCT<span>-100</span></div>
     <ul>
       <li><a href="index.html">产品说明书</a></li>
       <li><a href="guide.html" class="active">快速上手</a></li>
@@ -18,11 +17,14 @@
     </ul>
   </nav>
 
-  <!-- 主体 -->
+  <header class="hero" style="padding:80px 48px 60px;">
+    <h1>⚡ 快速上手指南</h1>
+    <p class="hero-subtitle">从开箱到稳定运行 — 15 分钟搭建您的化工控制实训平台</p>
+  </header>
+
   <div class="main-container">
-    <!-- 左侧锚点菜单 -->
     <aside class="sidebar">
-      <h3>上手目录</h3>
+      <h3>上手步骤</h3>
       <ul>
         <li><a href="#prepare">准备工作</a></li>
         <li><a href="#wiring">硬件接线</a></li>
@@ -35,89 +37,117 @@
     </aside>
 
     <main class="content">
-      <h1>快速上手指南</h1>
-      <p class="subtitle">从开箱到运行的完整步骤，15 分钟搭建您的化工控制实训平台</p>
 
       <!-- 准备工作 -->
       <section id="prepare">
-        <h2>准备工作</h2>
-        <p>在开始之前，请确认您已备齐以下硬件与软件：</p>
+        <h2><span class="section-icon">📦</span> 准备工作</h2>
+
         <h3>硬件清单</h3>
-        <ul>
-          <li>ESP32-DevKitC 开发板 × 1</li>
-          <li>SH1106 OLED 128×64 I2C 显示屏 × 1</li>
-          <li>GL5516 光敏电阻 + 10kΩ 分压电阻 × 1</li>
-          <li>DS18B20 温度传感器 + 4.7kΩ 上拉电阻 × 1</li>
-          <li>2 路继电器模块（5V 光耦隔离）× 1</li>
-          <li>WS2812 RGB LED × 1</li>
-          <li>自锁按键（KEY1）+ 轻触按键（KEY2）× 各 1</li>
-          <li>USB 数据线（支持数据传输）× 1</li>
-          <li>杜邦线若干、洞洞板或面包板 × 1</li>
-        </ul>
+        <table class="data-table">
+          <thead><tr><th>序号</th><th>物品</th><th>数量</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>ESP32-DevKitC 开发板</td><td>×1</td><td>240MHz 双核，4MB Flash</td></tr>
+            <tr><td>2</td><td>SH1106 OLED 128×64</td><td>×1</td><td>I²C 接口，地址 0x3C</td></tr>
+            <tr><td>3</td><td>GL5516 光敏电阻</td><td>×1</td><td>配 10kΩ 分压电阻</td></tr>
+            <tr><td>4</td><td>DS18B20 温度传感器</td><td>×1</td><td>配 4.7kΩ 上拉电阻</td></tr>
+            <tr><td>5</td><td>2路继电器模块（5V）</td><td>×1</td><td>光耦隔离，低电平触发</td></tr>
+            <tr><td>6</td><td>WS2812 RGB LED</td><td>×1</td><td>建议串 470Ω 限流电阻</td></tr>
+            <tr><td>7</td><td>自锁按键 + 轻触按键</td><td>×各1</td><td>KEY1（电源）+ KEY2（功能）</td></tr>
+            <tr><td>8</td><td>USB 数据线</td><td>×1</td><td>需支持数据传输</td></tr>
+            <tr><td>9</td><td>杜邦线 + 面包板/洞洞板</td><td>若干</td><td>公母头、母母头均备</td></tr>
+          </tbody>
+        </table>
 
         <h3>软件清单</h3>
         <ul>
-          <li>Visual Studio Code</li>
-          <li>PlatformIO IDE 插件</li>
-          <li>CH340 / CP2102 驱动（根据开发板 USB 转串芯片安装）</li>
+          <li>Visual Studio Code（最新版）</li>
+          <li>PlatformIO IDE 插件（扩展市场搜索安装）</li>
+          <li>CH340 / CP2102 USB 驱动（按开发板型号安装对应驱动）</li>
+          <li>串口调试工具（推荐 MobaXterm 或 putty，波特率 115200）</li>
         </ul>
       </section>
 
       <!-- 硬件接线 -->
       <section id="wiring">
-        <h2>硬件接线</h2>
-        <p>按照下表将各模块与 ESP32 连接。建议使用不同颜色的杜邦线区分电源、地线与信号线。</p>
+        <h2><span class="section-icon">🔗</span> 硬件接线</h2>
+        <p>按照下表将各模块与 ESP32 连接。建议使用不同颜色杜邦线区分电源（红）、地线（黑）和信号线（其他颜色）。</p>
 
         <div class="warning-box">
-          <strong>重要提醒：</strong>GPIO17 与 GPIO18 在本项目中为保留引脚，<strong>严禁</strong>用于任何外设接线。
+          <div><strong>⚠ 严禁使用 GPIO17 和 GPIO18！</strong>这两个引脚在本项目中为保留引脚，任何外设均不得占用。</div>
         </div>
 
+        <!-- 接线示意 SVG -->
+        <div class="arch-diagram" style="padding:16px 20px;">
+          <svg width="720" height="260" viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
+            <!-- ESP32 核心 -->
+            <rect x="280" y="30" width="160" height="80" rx="14" fill="#1a237e" stroke="#0d47a1" stroke-width="2"/>
+            <text x="360" y="65" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">ESP32</text>
+            <text x="360" y="85" text-anchor="middle" fill="#90caf9" font-size="10">DevKitC</text>
+            <text x="360" y="100" text-anchor="middle" fill="#64b5f6" font-size="9">GPIO 引脚</text>
+
+            <!-- 外设模块 -->
+            <rect x="20" y="140" width="120" height="45" rx="8" fill="#0d47a1"/><text x="80" y="167" text-anchor="middle" fill="#fff" font-size="12">🖥️ SH1106 OLED</text>
+            <rect x="160" y="140" width="120" height="45" rx="8" fill="#00838f"/><text x="220" y="167" text-anchor="middle" fill="#fff" font-size="12">🌡️ DS18B20</text>
+            <rect x="300" y="140" width="120" height="45" rx="8" fill="#00838f"/><text x="360" y="167" text-anchor="middle" fill="#fff" font-size="12">☀️ GL5516</text>
+            <rect x="440" y="140" width="120" height="45" rx="8" fill="#455a64"/><text x="500" y="167" text-anchor="middle" fill="#fff" font-size="12">🔌 继电器×2</text>
+            <rect x="580" y="140" width="120" height="45" rx="8" fill="#2e7d32"/><text x="640" y="167" text-anchor="middle" fill="#fff" font-size="12">💡 WS2812</text>
+
+            <!-- 按键 -->
+            <rect x="20" y="205" width="100" height="35" rx="8" fill="#546e7a"/><text x="70" y="226" text-anchor="middle" fill="#fff" font-size="11">KEY1 总开关</text>
+            <rect x="140" y="205" width="100" height="35" rx="8" fill="#546e7a"/><text x="190" y="226" text-anchor="middle" fill="#fff" font-size="11">KEY2 功能键</text>
+
+            <!-- 连线 -->
+            <line x1="360" y1="110" x2="80" y2="140" stroke="#90caf9" stroke-width="1.5"/><text x="200" y="130" fill="#546e7a" font-size="9">GPIO4,5</text>
+            <line x1="360" y1="110" x2="220" y2="140" stroke="#80deea" stroke-width="1.5"/><text x="275" y="128" fill="#546e7a" font-size="9">GPIO10</text>
+            <line x1="360" y1="110" x2="360" y2="140" stroke="#80deea" stroke-width="1.5"/><text x="374" y="130" fill="#546e7a" font-size="9">GPIO1</text>
+            <line x1="360" y1="110" x2="500" y2="140" stroke="#90a4ae" stroke-width="1.5"/><text x="440" y="128" fill="#546e7a" font-size="9">GPIO6,7</text>
+            <line x1="360" y1="110" x2="640" y2="140" stroke="#66bb6a" stroke-width="1.5"/><text x="510" y="128" fill="#546e7a" font-size="9">GPIO0</text>
+            <line x1="360" y1="80" x2="70" y2="205" stroke="#90a4ae" stroke-width="1"/>
+            <line x1="360" y1="80" x2="190" y2="205" stroke="#90a4ae" stroke-width="1"/>
+            <text x="225" y="105" fill="#546e7a" font-size="9">GPIO20,21</text>
+          </svg>
+          <p style="margin-top:4px; color:#78909c; font-size:13px;">▲ 硬件接线示意图（模块 → GPIO 映射）</p>
+        </div>
+
+        <h3>详细接线表</h3>
         <table class="data-table">
-          <thead>
-            <tr><th>模块</th><th>信号</th><th>ESP32 引脚</th><th>备注</th></tr>
-          </thead>
+          <thead><tr><th>模块</th><th>引脚</th><th>ESP32 GPIO</th><th>供电</th><th>备注</th></tr></thead>
           <tbody>
-            <tr><td>OLED</td><td>SDA</td><td>GPIO4</td><td>I2C 数据线</td></tr>
-            <tr><td>OLED</td><td>SCL</td><td>GPIO5</td><td>I2C 时钟线</td></tr>
-            <tr><td>OLED</td><td>VCC</td><td>3.3V</td><td></td></tr>
-            <tr><td>OLED</td><td>GND</td><td>GND</td><td></td></tr>
-            <tr><td>光敏电阻</td><td>信号</td><td>GPIO1</td><td>ADC 输入，串联 10kΩ 电阻分压</td></tr>
-            <tr><td>DS18B20</td><td>信号</td><td>GPIO10</td><td>1-Wire 总线，并联 4.7kΩ 上拉至 3.3V</td></tr>
-            <tr><td>继电器-灯</td><td>控制</td><td>GPIO6</td><td>高电平触发</td></tr>
-            <tr><td>继电器-风扇</td><td>控制</td><td>GPIO7</td><td>高电平触发</td></tr>
-            <tr><td>继电器</td><td>VCC</td><td>5V</td><td>继电器模块需 5V 供电</td></tr>
-            <tr><td>继电器</td><td>GND</td><td>GND</td><td></td></tr>
-            <tr><td>WS2812</td><td>信号</td><td>GPIO0</td><td>建议串联 470Ω 电阻</td></tr>
-            <tr><td>KEY1</td><td>信号</td><td>GPIO20</td><td>自锁按键，一端接 GPIO20，一端接 3.3V</td></tr>
-            <tr><td>KEY2</td><td>信号</td><td>GPIO21</td><td>轻触按键，一端接 GPIO21，一端接 3.3V</td></tr>
+            <tr><td>OLED</td><td>SDA / SCL</td><td>GPIO4 / GPIO5</td><td>3.3V</td><td>I²C 地址 0x3C</td></tr>
+            <tr><td>光敏电阻</td><td>信号</td><td>GPIO1</td><td>3.3V</td><td>串联 10kΩ 分压</td></tr>
+            <tr><td>DS18B20</td><td>信号</td><td>GPIO10</td><td>3.3V</td><td>DATA 上拉 4.7kΩ 到 VCC</td></tr>
+            <tr><td>继电器-灯</td><td>控制</td><td>GPIO6</td><td>5V</td><td>HIGH 有效</td></tr>
+            <tr><td>继电器-风扇</td><td>控制</td><td>GPIO7</td><td>5V</td><td>HIGH 有效</td></tr>
+            <tr><td>WS2812</td><td>信号</td><td>GPIO0</td><td>3.3V</td><td>串 470Ω 电阻</td></tr>
+            <tr><td>KEY1</td><td>信号</td><td>GPIO20</td><td>—</td><td>一端 GPIO20，一端 3.3V</td></tr>
+            <tr><td>KEY2</td><td>信号</td><td>GPIO21</td><td>—</td><td>一端 GPIO21，一端 3.3V</td></tr>
           </tbody>
         </table>
-
         <div class="info-box">
-          <strong>接线提示：</strong>KEY1 与 KEY2 均使用 <code>INPUT_PULLDOWN</code> 模式，因此按键另一端只需接 3.3V，无需额外下拉电阻。
+          <div>KEY1 与 KEY2 均使用 <code>INPUT_PULLDOWN</code> 模式，按键另一端只需接 3.3V，无需额外下拉电阻。</div>
         </div>
       </section>
 
       <!-- 开发环境 -->
       <section id="env">
-        <h2>开发环境搭建</h2>
+        <h2><span class="section-icon">🛠️</span> 开发环境搭建</h2>
 
         <div class="step">
           <div class="step-number">1</div>
           <div class="step-content">
-            <h4>安装 VS Code 与 PlatformIO</h4>
-            <p>下载安装 Visual Studio Code，在扩展市场中搜索并安装 "PlatformIO IDE" 插件。安装完成后左侧活动栏会出现 PlatformIO 蚂蚁图标。</p>
+            <h4>安装 VS Code + PlatformIO</h4>
+            <p>下载安装 VS Code，在左侧扩展市场搜索 <strong>"PlatformIO IDE"</strong> 并安装。安装完成后左侧活动栏出现蚂蚁图标即成功。</p>
           </div>
         </div>
 
         <div class="step">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h4>安装 USB 转串驱动</h4>
-            <p>根据您的 ESP32 开发板搭载的 USB 芯片安装对应驱动：</p>
+            <h4>安装 USB 转串口驱动</h4>
+            <p>根据开发板搭载的 USB 芯片安装对应驱动：</p>
             <ul>
-              <li>CP2102（Silicon Labs）— 官网下载 CP210x 驱动</li>
-              <li>CH340（南京沁恒）— 官网下载 CH340 驱动</li>
+              <li><strong>CP2102</strong> → Silicon Labs 官网下载 CP210x 驱动</li>
+              <li><strong>CH340</strong> → 南京沁恒官网下载 CH340 驱动</li>
             </ul>
           </div>
         </div>
@@ -126,7 +156,7 @@
           <div class="step-number">3</div>
           <div class="step-content">
             <h4>配置 platformio.ini</h4>
-            <p>在项目根目录创建 <code>platformio.ini</code>，内容如下：</p>
+            <p>在项目根目录创建配置文件：</p>
             <pre>
 [env:esp32dev]
 platform = espressif32
@@ -139,21 +169,20 @@ lib_deps =
     milesburton/DallasTemperature @ ^3.9.0
     knolleary/PubSubClient @ ^2.8
     bblanchon/ArduinoJson @ ^6.21.0
-monitor_speed = 115200
-            </pre>
+monitor_speed = 115200</pre>
           </div>
         </div>
       </section>
 
       <!-- 烧录固件 -->
       <section id="upload">
-        <h2>烧录固件</h2>
+        <h2><span class="section-icon">📥</span> 烧录固件</h2>
 
         <div class="step">
           <div class="step-number">1</div>
           <div class="step-content">
             <h4>连接开发板</h4>
-            <p>使用 USB 数据线将 ESP32 开发板连接至电脑。在 VS Code 底部状态栏选择正确的串口（如 COM3 或 /dev/ttyUSB0）。</p>
+            <p>USB 数据线连接 ESP32 到电脑，VS Code 底部状态栏选择对应串口（如 COM3 / ttyUSB0）。</p>
           </div>
         </div>
 
@@ -161,8 +190,8 @@ monitor_speed = 115200
           <div class="step-number">2</div>
           <div class="step-content">
             <h4>编译与上传</h4>
-            <p>点击 PlatformIO 工具栏的 <strong>Build</strong>（对勾图标）编译项目。编译成功后点击 <strong>Upload</strong>（箭头图标）将固件烧录至 ESP32。</p>
-            <p>若上传失败提示 "Failed to connect to ESP32"，请在点击 Upload 的同时按住开发板上的 <strong>BOOT</strong> 按键，直到出现 "Connecting..." 提示后松开。</p>
+            <p>点击 PlatformIO 工具栏 <strong>✓ Build</strong> 编译项目，编译通过后点击 <strong>→ Upload</strong> 烧录。</p>
+            <p>若出现 <em>"Failed to connect to ESP32"</em>，在上传时按住 BOOT 键直到出现 "Connecting..."。</p>
           </div>
         </div>
 
@@ -170,23 +199,26 @@ monitor_speed = 115200
           <div class="step-number">3</div>
           <div class="step-content">
             <h4>查看串口输出</h4>
-            <p>点击 PlatformIO 工具栏的 <strong>Serial Monitor</strong>（插头图标），波特率设置为 115200。正常启动后应看到系统初始化日志与 WiFi 连接状态。</p>
+            <p>点击 <strong>🔌 Serial Monitor</strong>（波特率 115200），正常启动后应看到系统初始化日志和 WiFi 状态信息。</p>
           </div>
+        </div>
+
+        <div class="success-box">
+          <div><strong>烧录成功！</strong>观察到 OLED 点亮并显示启动画面，WS2812 七彩闪烁后进入正常指示状态，即烧录完成。</div>
         </div>
       </section>
 
       <!-- WiFi 配网 -->
       <section id="wifi">
-        <h2>WiFi 配网</h2>
-        <p>设备首次使用或更换网络环境时，需要通过串口命令配置 WiFi。</p>
+        <h2><span class="section-icon">📡</span> WiFi 配网</h2>
+        <p>设备首次使用或更换网络时，通过串口命令配置 WiFi：</p>
 
         <div class="step">
           <div class="step-number">1</div>
           <div class="step-content">
             <h4>扫描附近网络</h4>
-            <p>在串口监视器中输入命令：</p>
             <pre>scan</pre>
-            <p>设备将返回附近可用的 WiFi 热点列表及其信号强度。</p>
+            <p>返回可用 WiFi 热点列表及信号强度 (dBm)。</p>
           </div>
         </div>
 
@@ -194,47 +226,42 @@ monitor_speed = 115200
           <div class="step-number">2</div>
           <div class="step-content">
             <h4>连接指定网络</h4>
-            <p>输入以下命令连接您的 WiFi（将 ssid 和 password 替换为实际值）：</p>
             <pre>connect MyWiFi mypassword123</pre>
-            <p>连接成功后，设备会将 WiFi 凭据保存至 NVS，断电不丢失。下次开机将自动尝试连接。</p>
+            <p>凭据自动保存至 NVS，断电不丢失，下次开机自动连接。</p>
           </div>
         </div>
 
         <div class="step">
           <div class="step-number">3</div>
           <div class="step-content">
-            <h4>验证连接</h4>
-            <p>输入命令查看当前 IP：</p>
+            <h4>验证连接状态</h4>
             <pre>ip</pre>
-            <p>若返回形如 <code>192.168.1.105</code> 的地址，说明 WiFi 连接成功。此时 OLED 第 5 行也会显示该 IP。</p>
+            <p>返回 IP（如 <code>192.168.1.105</code>），OLED 第 5 行同步显示。</p>
           </div>
         </div>
 
         <div class="info-box">
-          <strong>提示：</strong>若需更换网络，使用 <code>forget</code> 命令清除已保存的凭据，然后重新 <code>connect</code>。
+          <div>更换网络时先用 <code>forget</code> 清除凭据，再重新 <code>connect</code>。用 <code>disconnect</code> 可临时断开。</div>
         </div>
       </section>
 
       <!-- MQTT 配置 -->
       <section id="mqtt">
-        <h2>MQTT 配置</h2>
-        <p>MQTT 配置用于远程监控与控制设备，同样通过串口命令完成。</p>
+        <h2><span class="section-icon">☁️</span> MQTT 配置</h2>
 
         <div class="step">
           <div class="step-number">1</div>
           <div class="step-content">
-            <h4>配置 MQTT 服务器</h4>
-            <p>输入以下命令配置服务器信息：</p>
+            <h4>配置服务器信息</h4>
             <pre>cfg_mqtt 47.98.170.180 8081 username password device_001</pre>
-            <p>参数依次为：服务器地址、端口、用户名、密码、设备 ID。若服务器无认证，用户名和密码可填任意占位符。</p>
+            <p>参数：服务器IP、端口、用户名、密码、设备ID。无认证时可填任意占位符。</p>
           </div>
         </div>
 
         <div class="step">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h4>查看配置</h4>
-            <p>输入命令确认配置已保存：</p>
+            <h4>确认配置已保存</h4>
             <pre>cfg_show</pre>
           </div>
         </div>
@@ -243,73 +270,43 @@ monitor_speed = 115200
           <div class="step-number">3</div>
           <div class="step-content">
             <h4>远程控制测试</h4>
-            <p>使用 MQTT 客户端（如 MQTT.fx、MQTTX）订阅控制主题并发送 JSON 指令：</p>
+            <p>使用 MQTTX / MQTT.fx 客户端发送指令：</p>
             <pre>
-主题: chemctrl/device_001/command
-内容: {"cmd":"set_relay","light":1,"fan":0}
-            </pre>
-            <p>设备收到指令后将立即切换继电器状态，并上报最新状态至 <code>chemctrl/device_001/status</code>。</p>
+📤 发布主题: chemctrl/device_001/command
+📤 消息内容: {"cmd":"set_relay","light":1,"fan":0}
+
+📥 订阅主题: chemctrl/device_001/status  (查看设备上报)</pre>
           </div>
         </div>
       </section>
 
       <!-- 功能验证 -->
       <section id="test">
-        <h2>功能验证</h2>
-        <p>完成以上步骤后，按照以下清单逐项验证设备功能：</p>
+        <h2><span class="section-icon">✔️</span> 功能验证清单</h2>
 
         <table class="data-table">
-          <thead>
-            <tr><th>验证项</th><th>操作方法</th><th>预期结果</th></tr>
-          </thead>
+          <thead><tr><th>#</th><th>验证项</th><th>操作方法</th><th>预期结果</th></tr></thead>
           <tbody>
-            <tr>
-              <td>系统启动</td>
-              <td>合上 KEY1，观察 OLED 与 LED</td>
-              <td>OLED 显示启动画面，WS2812 七彩闪烁后进入状态指示</td>
-            </tr>
-            <tr>
-              <td>传感器读数</td>
-              <td>观察 OLED 第 2、3 行</td>
-              <td>光照显示为合理 lux 值，温度显示为环境温度</td>
-            </tr>
-            <tr>
-              <td>自动模式</td>
-              <td>用手遮挡光敏电阻 / 加热 DS18B20</td>
-              <td>光照低于阈值灯灭，高于阈值灯亮；温度超 33°C 风扇启动</td>
-            </tr>
-            <tr>
-              <td>手动模式</td>
-              <td>长按 KEY2 切换手动，短按循环</td>
-              <td>继电器按 00→01→10→11 循环切换</td>
-            </tr>
-            <tr>
-              <td>WiFi 连接</td>
-              <td>查看 OLED 第 5 行</td>
-              <td>显示当前局域网 IP 地址</td>
-            </tr>
-            <tr>
-              <td>HTTP API</td>
-              <td>浏览器访问 http://&lt;ip&gt;/api/status</td>
-              <td>返回 JSON 格式的传感器与继电器状态</td>
-            </tr>
-            <tr>
-              <td>MQTT 上报</td>
-              <td>使用 MQTT 客户端订阅状态主题</td>
-              <td>每 10 秒收到一次状态 JSON</td>
-            </tr>
+            <tr><td>1</td><td>系统启动</td><td>合上 KEY1</td><td>OLED 亮起，WS2812 七彩闪烁后进入状态指示</td></tr>
+            <tr><td>2</td><td>传感器读数</td><td>观察 OLED 第 2、3 行</td><td>光照显示 lux 值，温度接近环境温度</td></tr>
+            <tr><td>3</td><td>自动模式-光照</td><td>用手遮挡光敏电阻</td><td>光照 &lt;150 lux 灯灭，移开后 &gt;150 lux 灯亮</td></tr>
+            <tr><td>4</td><td>自动模式-温度</td><td>捏住 DS18B20 加热</td><td>温度 &gt;33°C 风扇启动，降温后 &lt;32.5°C 停止</td></tr>
+            <tr><td>5</td><td>手动模式</td><td>长按 KEY2 切换，短按循环</td><td>继电器按 00→01→10→11→00 循环</td></tr>
+            <tr><td>6</td><td>WiFi 连接</td><td>查看 OLED 第 5 行</td><td>显示局域网 IP 地址</td></tr>
+            <tr><td>7</td><td>HTTP API</td><td>浏览器访问 /api/status</td><td>返回 JSON 完整状态</td></tr>
+            <tr><td>8</td><td>MQTT 上报</td><td>MQTT 客户端订阅状态主题</td><td>每 10 秒收到一次状态 JSON</td></tr>
           </tbody>
         </table>
 
-        <div class="info-box">
-          <strong>恭喜！</strong>若以上验证项全部通过，说明您的 PCT-100 实训装置已成功搭建并开始运行。
+        <div class="success-box">
+          <div><strong>全部通过！</strong>您的 PCT-100 化工控制实训装置已成功搭建并稳定运行，可以开始教学实验了。</div>
         </div>
       </section>
 
     </main>
   </div>
 
-  <footer>© 2026 PCT-100 Project V1.2</footer>
+  <footer>© 2026 PCT-100 化工控制实训装置 V1.2 &nbsp;|&nbsp; Quick Start Guide</footer>
 
 </body>
 </html>

@@ -10,13 +10,25 @@
 
   <!-- 顶部导航 -->
   <nav class="top-nav">
-    <div class="logo">PCT-100</div>
+    <div class="logo">PCT<span>-100</span></div>
     <ul>
       <li><a href="index.html" class="active">产品说明书</a></li>
       <li><a href="guide.html">快速上手</a></li>
       <li><a href="downloads.html">下载中心</a></li>
     </ul>
   </nav>
+
+  <!-- Hero 横幅 -->
+  <header class="hero">
+    <h1>PCT-100 化工控制实训装置</h1>
+    <p class="hero-subtitle">基于 ESP32 的工业物联网综合实训平台 — 从传感器采集到云端控制的全链路教学系统</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">2</div><div class="label">传感通道</div></div>
+      <div class="hero-stat"><div class="num">2</div><div class="label">控制回路</div></div>
+      <div class="hero-stat"><div class="num">3</div><div class="label">通信协议</div></div>
+      <div class="hero-stat"><div class="num">6</div><div class="label">应用场景</div></div>
+    </div>
+  </header>
 
   <!-- 主体 -->
   <div class="main-container">
@@ -38,184 +50,255 @@
 
     <!-- 右侧内容 -->
     <main class="content">
-      <h1>PCT-100 化工控制实训装置</h1>
-      <p class="subtitle">面向化工自动化教学、物联网实训、智能控制研发的 ESP32 综合实训平台</p>
 
       <!-- 产品总览 -->
       <section id="overview">
-        <h2>产品总览</h2>
-        <p>PCT-100 是一款基于 ESP32 微控制器的化工控制实训装置，集成了多传感器数据采集、继电器自动控制、OLED 本地显示、WiFi 无线配网、MQTT 远程通信等功能模块。装置在设计上充分考虑了高校化工自动化与物联网教学的实际需求，提供了从底层硬件到云端通信的完整实训链路，帮助学习者系统掌握嵌入式开发、传感器应用、工业通信协议等核心技能。</p>
+        <h2><span class="section-icon">📋</span> 产品总览</h2>
+        <p>PCT-100 是一款面向高校化工自动化与物联网教学的<strong>ESP32 综合实训装置</strong>，集成了多传感器数据采集、继电器自动控制、OLED 中文显示、WiFi 智能配网、MQTT 远程监控与 HTTP REST API 等完整功能链路。装置采用模块化设计，从底层硬件到云端通信，为学习者提供<strong>从入门到精通的全栈嵌入式开发体验</strong>。</p>
 
-        <div class="highlights">
-          <div class="highlight-item">
+        <!-- 系统架构图 -->
+        <div class="arch-diagram">
+          <svg width="780" height="280" viewBox="0 0 780 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gSensor" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0d47a1"/><stop offset="100%" stop-color="#1565c0"/></linearGradient>
+              <linearGradient id="gControl" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00838f"/><stop offset="100%" stop-color="#00bcd4"/></linearGradient>
+              <linearGradient id="gCloud" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#455a64"/><stop offset="100%" stop-color="#607d8b"/></linearGradient>
+              <filter id="shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter>
+            </defs>
+            <!-- 传感器层 -->
+            <rect x="30" y="20" width="160" height="50" rx="10" fill="url(#gSensor)" filter="url(#shadow)"/>
+            <text x="110" y="38" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">GL5516 光敏电阻</text>
+            <text x="110" y="55" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="11">ADC · GPIO1</text>
+
+            <rect x="210" y="20" width="160" height="50" rx="10" fill="url(#gSensor)" filter="url(#shadow)"/>
+            <text x="290" y="38" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">DS18B20 温度传感器</text>
+            <text x="290" y="55" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="11">1-Wire · GPIO10</text>
+
+            <!-- 核心 ESP32 -->
+            <rect x="240" y="100" width="300" height="60" rx="14" fill="#1a237e" stroke="#0d47a1" stroke-width="2" filter="url(#shadow)"/>
+            <text x="390" y="128" text-anchor="middle" fill="#fff" font-size="18" font-weight="800">ESP32-DevKitC 核心板</text>
+            <text x="390" y="148" text-anchor="middle" fill="#90caf9" font-size="11">240MHz 双核 · 4MB Flash · FreeRTOS</text>
+
+            <!-- 控制层 -->
+            <rect x="30" y="190" width="115" height="50" rx="10" fill="url(#gControl)" filter="url(#shadow)"/>
+            <text x="87" y="212" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">灯（继电器3）</text>
+            <text x="87" y="229" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="11">HIGH · GPIO6</text>
+
+            <rect x="160" y="190" width="115" height="50" rx="10" fill="url(#gControl)" filter="url(#shadow)"/>
+            <text x="217" y="212" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">风扇（继电器4）</text>
+            <text x="217" y="229" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="11">HIGH · GPIO7</text>
+
+            <rect x="290" y="190" width="130" height="50" rx="10" fill="url(#gControl)" filter="url(#shadow)"/>
+            <text x="355" y="212" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">SH1106 OLED</text>
+            <text x="355" y="229" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="11">I²C · SDA4 SCL5</text>
+
+            <rect x="435" y="190" width="105" height="50" rx="10" fill="url(#gControl)" filter="url(#shadow)"/>
+            <text x="487" y="212" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">WS2812 LED</text>
+            <text x="487" y="229" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="11">GPIO0</text>
+
+            <!-- 云端 -->
+            <rect x="560" y="100" width="190" height="60" rx="14" fill="url(#gCloud)" filter="url(#shadow)"/>
+            <text x="655" y="125" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">☁ 云端服务</text>
+            <text x="655" y="145" text-anchor="middle" fill="#b0bec5" font-size="11">WiFi · MQTT · HTTP API</text>
+
+            <!-- 连线箭头 -->
+            <line x1="190" y1="70" x2="300" y2="100" stroke="#90caf9" stroke-width="2" marker-end="url(#arrowBlue)"/>
+            <line x1="290" y1="70" x2="390" y2="100" stroke="#90caf9" stroke-width="2"/>
+            <line x1="390" y1="160" x2="390" y2="190" stroke="#80deea" stroke-width="2"/>
+            <line x1="300" y1="160" x2="160" y2="190" stroke="#80deea" stroke-width="2"/>
+            <line x1="480" y1="160" x2="655" y2="100" stroke="#78909c" stroke-width="2" stroke-dasharray="6,3"/>
+            <defs>
+              <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#90caf9"/></marker>
+            </defs>
+          </svg>
+          <p style="margin-top:10px; color: #78909c; font-size: 13px;">▲ PCT-100 系统架构示意图</p>
+        </div>
+
+        <div class="highlights-grid">
+          <div class="highlight-card">
+            <div class="hl-icon">🌡️</div>
             <h4>多传感器融合</h4>
-            <p>集成 GL5516 光敏电阻与 DS18B20 温度传感器，支持 ADC 模拟采集与 1-Wire 数字总线双协议，实现光照 lux 照度与温度的高精度监测。</p>
+            <p>集成 GL5516 光敏电阻（ADC 模拟采集）与 DS18B20 温度传感器（1-Wire 数字总线），双协议实现光照 lux 照度与温度的高精度实时监测。</p>
           </div>
-          <div class="highlight-item">
-            <h4>智能自动控制</h4>
-            <p>光照 / 温度双阈值自动触发继电器，内置滞回控制算法，避免设备在临界值附近频繁切换，保障执行器寿命。</p>
+          <div class="highlight-card">
+            <div class="hl-icon">⚙️</div>
+            <h4>智能滞回控制</h4>
+            <p>光照 / 温度双阈值自动触发继电器，内置 0.5°C 滞回控制算法，避免执行器在临界值附近频繁切换，有效保障设备寿命。</p>
           </div>
-          <div class="highlight-item">
-            <h4>多模式控制</h4>
-            <p>支持自动 / 手动模式一键切换。自动模式按传感器阈值执行；手动模式通过按键循环控制灯和风扇的开关组合。</p>
+          <div class="highlight-card">
+            <div class="hl-icon">🔄</div>
+            <h4>自动 / 手动双模式</h4>
+            <p>一键切换控制模式。自动模式按传感器阈值联锁控制；手动模式通过按键循环切换灯与风扇的开关组合（00→01→10→11）。</p>
           </div>
-          <div class="highlight-item">
+          <div class="highlight-card">
+            <div class="hl-icon">📡</div>
             <h4>WiFi 智能配网</h4>
-            <p>NVS 非易失存储断电记忆 WiFi 凭据，串口交互式配网，状态机管理连接流程，支持扫描、选择、输入密码、自动重连。</p>
+            <p>NVS 非易失存储记忆 WiFi 凭据（断电不丢失），状态机管理连接流程，支持扫描、选择、输密、自动重连全流程。</p>
           </div>
-          <div class="highlight-item">
+          <div class="highlight-card">
+            <div class="hl-icon">☁️</div>
             <h4>MQTT 远程监控</h4>
-            <p>基于 JSON 格式的 MQTT 通信，每 10 秒自动上报状态，支持远程下发开关、模式切换、阈值修改等指令。</p>
+            <p>JSON 格式 MQTT 通信，每 10 秒自动上报完整状态。支持远程下发继电器开关、模式切换、阈值修改等控制指令。</p>
           </div>
-          <div class="highlight-item">
+          <div class="highlight-card">
+            <div class="hl-icon">🌐</div>
             <h4>HTTP REST API</h4>
-            <p>内置 Web 服务器，提供 /api/status、/api/mode、/api/led 等端点，浏览器即可实时查看状态并远程控制设备。</p>
+            <p>内置 Web 服务器，提供 /api/status、/api/mode、/api/led 等 9 个端点。浏览器即可实时查看状态并远程控制设备。</p>
           </div>
-          <div class="highlight-item">
-            <h4>WS2812 状态指示</h4>
-            <p>6 种灯效模式按优先级自动切换，涵盖正常、WiFi 未连接、MQTT 未连接、温度/光照越界、严重报警等状态。</p>
+          <div class="highlight-card">
+            <div class="hl-icon">💡</div>
+            <h4>WS2812 智能灯效</h4>
+            <p>6 种灯效按优先级自动切换：严重报警→光照越界→温度越界→MQTT未连→WiFi未连→全正常，一眼判断系统状态。</p>
           </div>
-          <div class="highlight-item">
+          <div class="highlight-card">
+            <div class="hl-icon">📺</div>
             <h4>OLED 中文显示</h4>
-            <p>SH1106 128×64 显示屏配合文泉驿字体，实时展示模式、光照、温度、继电器状态、WiFi IP 等 5 行关键信息。</p>
+            <p>SH1106 128×64 屏幕 + 文泉驿字体，5 行信息实时展示模式、光照、温度、继电器状态及 WiFi IP，一目了然。</p>
           </div>
         </div>
 
-        <div class="scenarios">
-          <h3>典型应用场景</h3>
-          <ul>
-            <li>高校化工自动化课程教学与实验实训</li>
-            <li>物联网传感器数据采集与无线传输实验</li>
-            <li>智能照明与温控系统原型开发</li>
-            <li>MQTT / HTTP 工业通信协议学习</li>
-            <li>嵌入式系统课程设计与毕业设计</li>
-            <li>远程监控与自动化控制科研平台</li>
-          </ul>
+        <h3>典型应用场景</h3>
+        <div class="scenarios-bar">
+          <span class="scenario-tag">🎓 高校化工自动化教学实验</span>
+          <span class="scenario-tag">📊 物联网传感器数据采集实训</span>
+          <span class="scenario-tag">🏭 智能照明与温控系统原型</span>
+          <span class="scenario-tag">📡 MQTT / HTTP 工业通信协议学习</span>
+          <span class="scenario-tag">🎓 嵌入式系统课程与毕业设计</span>
+          <span class="scenario-tag">🔬 远程监控与自动化科研平台</span>
         </div>
       </section>
 
       <!-- 硬件规格与引脚定义 -->
       <section id="hardware">
-        <h2>硬件规格与引脚定义</h2>
-        <p>PCT-100 核心控制板采用 ESP32-DevKitC 开发板（240MHz 双核、520KB SRAM、4MB Flash），配合外设模块组成完整实训系统。以下为各功能模块与 GPIO 引脚映射关系。</p>
+        <h2><span class="section-icon">🔌</span> 硬件规格与引脚定义</h2>
+        <p>PCT-100 核心控制板采用 <strong>ESP32-DevKitC</strong> 开发板（240MHz 双核 Xtensa LX6、520KB SRAM、4MB Flash），配合外设模块组成完整实训系统。</p>
 
         <div class="warning-box">
-          <strong>注意：</strong>GPIO17 与 GPIO18 在本项目中已规划为其他用途，所有外设接线禁止使用这两个引脚，以免造成硬件冲突。
+          <div><strong>重要提醒：</strong>GPIO17 与 GPIO18 在本项目中为保留引脚，<strong>严禁</strong>用于任何外设接线，以免造成硬件冲突。</div>
         </div>
 
         <table class="data-table">
           <thead>
-            <tr><th>功能模块</th><th>GPIO</th><th>说明</th></tr>
+            <tr><th>功能模块</th><th>GPIO</th><th>类型</th><th>说明</th></tr>
           </thead>
           <tbody>
-            <tr><td>KEY1 总开关</td><td>GPIO20</td><td>自锁按键，INPUT_PULLDOWN，合上高电平使能系统</td></tr>
-            <tr><td>KEY2 多功能键</td><td>GPIO21</td><td>轻触按键，INPUT_PULLDOWN，短按/长按识别</td></tr>
-            <tr><td>光敏电阻 GL5516</td><td>GPIO1</td><td>ADC1_CH0 模拟输入，量程 0 ~ 3.3V</td></tr>
-            <tr><td>DS18B20 温度</td><td>GPIO10</td><td>1-Wire 数字总线，12-bit 温度精度</td></tr>
-            <tr><td>灯（继电器3）</td><td>GPIO6</td><td>数字输出 HIGH 有效，驱动继电器模块</td></tr>
-            <tr><td>风扇（继电器4）</td><td>GPIO7</td><td>数字输出 HIGH 有效，驱动继电器模块</td></tr>
-            <tr><td>WS2812 万色灯</td><td>GPIO0</td><td>单总线协议，1 颗 RGB LED 状态指示</td></tr>
-            <tr><td>OLED SDA</td><td>GPIO4</td><td>I2C 数据线，SH1106 128×64</td></tr>
-            <tr><td>OLED SCL</td><td>GPIO5</td><td>I2C 时钟线，SH1106 128×64</td></tr>
+            <tr><td>KEY1 总开关</td><td>GPIO20</td><td>数字输入</td><td>自锁按键，INPUT_PULLDOWN，高电平使能系统</td></tr>
+            <tr><td>KEY2 多功能键</td><td>GPIO21</td><td>数字输入</td><td>轻触按键，INPUT_PULLDOWN，支持短按/长按</td></tr>
+            <tr><td>光敏电阻 GL5516</td><td>GPIO1</td><td>ADC</td><td>ADC1_CH0 模拟输入，量程 0 ~ 3.3V</td></tr>
+            <tr><td>DS18B20 温度</td><td>GPIO10</td><td>1-Wire</td><td>单总线数字协议，12-bit 精度 0.0625°C</td></tr>
+            <tr><td>灯（继电器3）</td><td>GPIO6</td><td>数字输出</td><td>HIGH 有效，驱动继电器模块</td></tr>
+            <tr><td>风扇（继电器4）</td><td>GPIO7</td><td>数字输出</td><td>HIGH 有效，驱动继电器模块</td></tr>
+            <tr><td>WS2812 万色灯</td><td>GPIO0</td><td>单总线</td><td>1 颗 RGB LED 状态指示</td></tr>
+            <tr><td>OLED SDA</td><td>GPIO4</td><td>I²C</td><td>数据线，SH1106 128×64 地址 0x3C</td></tr>
+            <tr><td>OLED SCL</td><td>GPIO5</td><td>I²C</td><td>时钟线，SH1106 128×64</td></tr>
           </tbody>
         </table>
 
         <h3>电气参数</h3>
         <ul>
-          <li>主控供电：5V USB 或 5V 引脚输入，板载 AMS1117-3.3 稳压</li>
-          <li>继电器模块：5V 供电，光耦隔离，低电平触发（控制端 HIGH 有效）</li>
-          <li>OLED 模块：3.3V 供电，I2C 地址 0x3C</li>
-          <li>DS18B20：3.3V 供电，建议并联 4.7kΩ 上拉电阻</li>
-          <li>WS2812：3.3V 信号电平兼容，建议串联 470Ω 限流电阻</li>
+          <li><strong>主控供电：</strong>5V USB 或 5V 引脚输入，板载 AMS1117-3.3V 稳压</li>
+          <li><strong>继电器模块：</strong>5V 供电，光耦隔离，低电平触发（控制端 HIGH 有效）</li>
+          <li><strong>OLED 模块：</strong>3.3V 供电，I²C 地址 0x3C</li>
+          <li><strong>DS18B20：</strong>3.3V 供电，建议 VCC-DATA 并联 4.7kΩ 上拉电阻</li>
+          <li><strong>WS2812：</strong>3.3V 信号电平兼容，建议串联 470Ω 限流电阻</li>
         </ul>
       </section>
 
       <!-- 传感器系统 -->
       <section id="sensor">
-        <h2>传感器系统</h2>
+        <h2><span class="section-icon">📡</span> 传感器系统</h2>
 
-        <h3>光照检测（GL5516 光敏电阻）</h3>
-        <p>光敏电阻通过分压电路接入 GPIO1（ADC1_CH0），系统读取 ADC 原始值后依次进行电压换算、电阻换算、照度百分比计算，最终输出 lux 照度值。默认自动模式阈值设为 150 lux，当环境光照超过阈值时自动开启照明灯，低于阈值时关闭。</p>
+        <h3>光照检测 — GL5516 光敏电阻</h3>
+        <p>光敏电阻通过串联 10kΩ 分压电路接入 GPIO1（ADC1_CH0），系统依次进行 ADC 采集→电压换算→电阻反算→照度百分比计算，最终输出 lux 照度值。自动模式下默认阈值 150 lux。</p>
         <ul>
           <li>ADC 分辨率：12-bit（0 ~ 4095）</li>
           <li>参考电压：3.3V</li>
-          <li>默认阈值：150 lux（可通过 MQTT / 串口命令远程修改）</li>
+          <li>默认阈值：<strong>150 lux</strong>（可通过 MQTT 或串口命令远程修改）</li>
+          <li>超阈值动作：自动开启照明灯（GPIO6 HIGH）</li>
         </ul>
 
-        <h3>温度检测（DS18B20）</h3>
-        <p>DS18B20 采用单总线协议，通过 OneWire 库与 DallasTemperature 库驱动，连接至 GPIO10。传感器以 12-bit 精度读取温度，分辨率为 0.0625°C。自动模式下，当温度高于 33°C 时开启风扇，低于 32.5°C（滞回 0.5°C）时关闭，避免风扇频繁启停。</p>
+        <h3>温度检测 — DS18B20 数字温度传感器</h3>
+        <p>采用 OneWire + DallasTemperature 库驱动，连接至 GPIO10。12-bit 精度（分辨率 0.0625°C）。自动模式下采用 0.5°C 滞回控制：温度 &gt;33°C 开风扇，&lt;32.5°C 关风扇，避免临界点频繁启停。</p>
         <ul>
           <li>测温范围：-55°C ~ +125°C</li>
-          <li>精度：±0.5°C（-10°C ~ +85°C 范围内）</li>
-          <li>默认阈值：33°C（可通过 MQTT / 串口命令远程修改）</li>
-          <li>滞回区间：0.5°C</li>
+          <li>精度：±0.5°C（-10°C ~ +85°C）</li>
+          <li>默认阈值：<strong>33°C</strong>，滞回区间 0.5°C</li>
+          <li>超阈值动作：自动开启散热风扇（GPIO7 HIGH）</li>
         </ul>
+
+        <!-- 传感器数据流示意 -->
+        <div class="arch-diagram" style="padding:14px 20px;">
+          <svg width="700" height="90" viewBox="0 0 700 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="20" width="150" height="50" rx="8" fill="#0d47a1"/><text x="85" y="48" text-anchor="middle" fill="#fff" font-size="13">光敏·ADC采集</text>
+            <text x="85" y="35" text-anchor="middle" fill="#fff" font-size="13">光敏·ADC采集</text>
+            <text x="85" y="52" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">0–4095 → 电压 → lux</text>
+            <rect x="80" y="20" width="150" height="50" rx="8" fill="#0d47a1"/><text x="155" y="45" text-anchor="middle" fill="#fff" font-size="13">光敏·ADC采集</text>
+            <polygon points="160,45 175,35 175,55" fill="#90caf9"/>
+            <rect x="180" y="20" width="130" height="50" rx="8" fill="#455a64"/><text x="245" y="42" text-anchor="middle" fill="#fff" font-size="13">ESP32 处理</text><text x="245" y="58" text-anchor="middle" fill="#b0bec5" font-size="10">阈值比较</text>
+            <polygon points="310,45 325,40 325,50" fill="#00bcd4"/><polygon points="310,45 325,40 325,50" fill="#00bcd4"/>
+            <rect x="330" y="20" width="110" height="50" rx="8" fill="#00838f"/><text x="385" y="42" text-anchor="middle" fill="#fff" font-size="13">继电器控制</text><text x="385" y="58" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">HIGH/LOW</text>
+            <polygon points="440,45 455,40 455,50" fill="#00bcd4"/>
+            <rect x="460" y="20" width="100" height="50" rx="8" fill="#2e7d32"/><text x="510" y="45" text-anchor="middle" fill="#fff" font-size="13">执行器</text>
+            <rect x="570" y="15" width="120" height="60" rx="8" fill="#546e7a"/><text x="630" y="40" text-anchor="middle" fill="#fff" font-size="12">MQTT上报</text><text x="630" y="58" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">/status JSON</text>
+          </svg>
+          <p style="margin-top:6px; color:#78909c; font-size:13px;">▲ 传感器采集 → ESP32处理 → 控制输出 完整链路</p>
+        </div>
       </section>
 
       <!-- 控制与输出 -->
       <section id="control">
-        <h2>控制与输出</h2>
+        <h2><span class="section-icon">🎛️</span> 控制与输出</h2>
 
-        <h3>自动模式</h3>
-        <p>系统上电后默认进入自动模式。自动模式逻辑如下：</p>
+        <h3>自动模式（默认）</h3>
+        <p>系统上电后自动进入。两个控制通道相互独立运行：</p>
         <ul>
-          <li>光照 &gt; 150 lux → 开启灯（GPIO6 HIGH）</li>
-          <li>光照 ≤ 150 lux → 关闭灯（GPIO6 LOW）</li>
-          <li>温度 &gt; 33°C → 开启风扇（GPIO7 HIGH）</li>
-          <li>温度 ≤ 32.5°C → 关闭风扇（GPIO7 LOW）</li>
+          <li>☀️ 光照 &gt; 150 lux → <strong>开灯</strong>（GPIO6 HIGH） / ≤ 150 lux → <strong>关灯</strong>（LOW）</li>
+          <li>🌡️ 温度 &gt; 33°C → <strong>开风扇</strong>（GPIO7 HIGH） / ≤ 32.5°C → <strong>关风扇</strong>（LOW）</li>
         </ul>
-        <p>两个控制通道相互独立，阈值可通过串口命令 <code>set_threshold &lt;light&gt; &lt;temp&gt;</code> 或 MQTT 远程修改。</p>
+        <p>阈值可通过串口命令 <code>set_threshold &lt;light&gt; &lt;temp&gt;</code> 或 MQTT <code>set_threshold</code> 远程修改。</p>
 
         <h3>手动模式</h3>
-        <p>长按 KEY2（约 2 秒）切换自动 / 手动模式。手动模式下，短按 KEY2 循环切换灯和风扇的组合状态：</p>
-        <pre>00（全关）→ 01（灯开）→ 10（风扇开）→ 11（全开）→ 00（全关）</pre>
+        <p>长按 KEY2（约 2 秒）切换自动/手动。手动模式下短按 KEY2 循环切换组合：</p>
+        <pre>00（全关） ▸ 01（仅灯开） ▸ 10（仅风扇开） ▸ 11（全开） ▸ 00 循环</pre>
 
         <h3>总开关（KEY1）</h3>
-        <p>KEY1 为自锁按键，作为系统总开关使用。当 KEY1 断开（低电平）时，系统进入休眠状态，所有继电器关闭、OLED 熄屏、LED 指示停止。KEY1 合上后系统恢复正常工作。</p>
+        <p>KEY1 为自锁按键，作为系统总使能。断开（低电平）时系统休眠：所有继电器关闭、OLED 熄屏、LED 停止。合上后恢复正常运行。</p>
       </section>
 
       <!-- 网络通信 -->
       <section id="network">
-        <h2>网络通信</h2>
+        <h2><span class="section-icon">🌐</span> 网络通信</h2>
 
-        <h3>WiFi 管理</h3>
-        <p>WiFi 管理模块采用状态机设计，支持以下串口命令：</p>
-        <ul>
-          <li><code>scan</code> — 扫描周围可用 WiFi 热点</li>
-          <li><code>connect &lt;ssid&gt; &lt;password&gt;</code> — 连接指定网络</li>
-          <li><code>ip</code> — 查看当前 IP 地址</li>
-          <li><code>forget</code> — 清除已保存的 WiFi 凭据</li>
-          <li><code>disconnect</code> — 断开当前连接</li>
-        </ul>
-        <p>WiFi 凭据保存在 ESP32 NVS 中，断电不丢失。开机后自动尝试连接已保存的网络。</p>
-
-        <h3>MQTT 通信</h3>
-        <p>默认 MQTT 服务器地址为 <code>47.98.170.180:8081</code>，协议版本 MQTT 3.1.1。设备 ID 可自定义，主题格式如下：</p>
-        <ul>
-          <li>状态上报：<code>chemctrl/{device_id}/status</code>（每 10 秒自动推送 JSON）</li>
-          <li>控制接收：<code>chemctrl/{device_id}/command</code>（订阅远程指令）</li>
-        </ul>
-        <p>支持的远程命令包括：</p>
-        <pre>
-set_relay &lt;light&gt; &lt;fan&gt;   // 设置继电器开关
-set_mode &lt;auto/manual&gt;      // 切换自动/手动模式
-get_status                    // 立即上报一次状态
-set_threshold &lt;light&gt; &lt;temp&gt; // 修改光照/温度阈值
-reboot                        // 重启设备
-        </pre>
-
-        <h3>HTTP REST API</h3>
-        <p>设备内置 Web 服务器，监听端口 80。提供以下端点：</p>
+        <h3>WiFi 管理（状态机）</h3>
+        <p>串口命令列表：</p>
         <table class="data-table">
-          <thead>
-            <tr><th>端点</th><th>方法</th><th>说明</th></tr>
-          </thead>
+          <thead><tr><th>命令</th><th>功能</th><th>示例</th></tr></thead>
           <tbody>
-            <tr><td>/api/status</td><td>GET</td><td>获取传感器与继电器状态</td></tr>
+            <tr><td><code>scan</code></td><td>扫描附近 WiFi</td><td><code>scan</code></td></tr>
+            <tr><td><code>connect</code></td><td>连接指定网络</td><td><code>connect MyWiFi 12345678</code></td></tr>
+            <tr><td><code>ip</code></td><td>查看当前 IP</td><td><code>ip</code></td></tr>
+            <tr><td><code>forget</code></td><td>清除已保存凭据</td><td><code>forget</code></td></tr>
+            <tr><td><code>disconnect</code></td><td>断开连接</td><td><code>disconnect</code></td></tr>
+          </tbody>
+        </table>
+        <p>WiFi 凭据保存在 ESP32 NVS 中，断电不丢失。开机后自动尝试重连。</p>
+
+        <h3>MQTT 通信（MQTT 3.1.1）</h3>
+        <p>默认服务器 <code>47.98.170.180:8081</code>，设备 ID 可自定义：</p>
+        <pre>
+📤 状态上报: chemctrl/{device_id}/status    (每10秒自动推送JSON)
+📥 控制接收: chemctrl/{device_id}/command   (订阅远程指令)</pre>
+        <p>支持的远程命令：<code>set_relay</code> · <code>set_mode</code> · <code>get_status</code> · <code>set_threshold</code> · <code>reboot</code></p>
+
+        <h3>HTTP REST API（端口 80）</h3>
+        <table class="data-table">
+          <thead><tr><th>端点</th><th>方法</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>/api/status</td><td>GET</td><td>获取传感器与继电器完整状态（JSON）</td></tr>
             <tr><td>/api/system</td><td>GET</td><td>获取系统信息</td></tr>
-            <tr><td>/api/mode</td><td>GET/POST</td><td>查询或切换自动/手动模式</td></tr>
-            <tr><td>/api/led</td><td>GET/POST</td><td>查询或控制灯（继电器）</td></tr>
-            <tr><td>/api/fan</td><td>GET/POST</td><td>查询或控制风扇（继电器）</td></tr>
+            <tr><td>/api/mode</td><td>GET / POST</td><td>查询或切换 自动/手动 模式</td></tr>
+            <tr><td>/api/led</td><td>GET / POST</td><td>查询或控制灯（继电器3）</td></tr>
+            <tr><td>/api/fan</td><td>GET / POST</td><td>查询或控制风扇（继电器4）</td></tr>
             <tr><td>/api/network</td><td>GET</td><td>查看 WiFi 连接状态</td></tr>
             <tr><td>/api/scan</td><td>GET</td><td>扫描附近 WiFi 热点</td></tr>
             <tr><td>/api/wifi_connect</td><td>POST</td><td>连接指定 WiFi</td></tr>
@@ -226,166 +309,136 @@ reboot                        // 重启设备
 
       <!-- 显示与交互 -->
       <section id="display">
-        <h2>显示与交互</h2>
+        <h2><span class="section-icon">🖥️</span> 显示与交互</h2>
 
-        <h3>OLED 显示内容</h3>
-        <p>显示屏为 SH1106 128×64 单色 OLED，通过 U8g2 库驱动，使用文泉驿 12px 字体支持中文显示。界面布局为 5 行信息：</p>
+        <h3>OLED 显示布局</h3>
+        <p>SH1106 128×64 OLED + U8g2 库 + 文泉驿 12px 中文字体，5 行信息：</p>
         <ol>
-          <li><strong>模式 + 总闸</strong>：显示当前自动/手动模式，以及 KEY1 总开关状态</li>
-          <li><strong>光照 / 阈值</strong>：实时 lux 照度与设定阈值，越界时显示感叹号报警</li>
-          <li><strong>温度 / 阈值</strong>：实时温度与设定阈值，越界时显示感叹号报警</li>
-          <li><strong>灯 + 风扇</strong>：显示两个继电器的开关状态</li>
-          <li><strong>WiFi IP</strong>：显示当前连接的网络 IP 地址，未连接时提示“WiFi:未连接”</li>
+          <li><strong>模式 + 总闸：</strong>自动/手动 + KEY1 状态</li>
+          <li><strong>光照 / 阈值：</strong>实时 lux 值 + 设定阈值（超阈值 ⚠️ 报警）</li>
+          <li><strong>温度 / 阈值：</strong>实时 °C + 设定阈值（超阈值 ⚠️ 报警）</li>
+          <li><strong>灯 + 风扇：</strong>两路继电器开关状态</li>
+          <li><strong>WiFi IP：</strong>当前局域网 IP，未连接显示"WiFi:未连接"</li>
         </ol>
 
         <h3>按键操作</h3>
         <table class="data-table">
-          <thead>
-            <tr><th>按键</th><th>操作</th><th>功能</th></tr>
-          </thead>
+          <thead><tr><th>按键</th><th>操作方式</th><th>功能说明</th></tr></thead>
           <tbody>
             <tr><td>KEY1</td><td>拨动自锁开关</td><td>系统总使能 / 休眠</td></tr>
-            <tr><td>KEY2</td><td>短按（< 1s）</td><td>手动模式：循环切换灯/风扇组合</td></tr>
-            <tr><td>KEY2</td><td>长按（≈ 2s）</td><td>切换自动 / 手动模式</td></tr>
+            <tr><td>KEY2</td><td>短按（&lt; 1s）</td><td>手动模式下循环切换灯/风扇组合</td></tr>
+            <tr><td>KEY2</td><td>长按（≈ 2s）</td><td>切换 自动 / 手动 模式</td></tr>
           </tbody>
         </table>
 
-        <h3>WS2812 灯效状态</h3>
-        <p>1 颗 WS2812 RGB LED 以 6 种灯效按优先级指示系统状态：</p>
+        <h3>WS2812 灯效优先级</h3>
         <ol>
-          <li><strong>严重报警</strong>（灯+风扇均越阈值）— 红绿蓝快速闪烁</li>
-          <li><strong>光照越界</strong> — 红绿蓝慢闪</li>
-          <li><strong>温度越界</strong> — 红绿蓝长亮</li>
-          <li><strong>MQTT 未连接</strong> — 红→绿→灭→蓝渐变</li>
-          <li><strong>WiFi 未连接</strong> — 红绿交替闪烁</li>
-          <li><strong>全部正常</strong> — 彩虹呼吸渐变</li>
+          <li>🔴🟢🔵 <strong>严重报警</strong>（灯+风扇均超阈值）— 快速闪烁</li>
+          <li>🔴🟢🔵 <strong>光照越界</strong> — 慢闪</li>
+          <li>🔴🟢🔵 <strong>温度越界</strong> — 长亮</li>
+          <li>🔴🟢 <strong>MQTT 未连接</strong> — 渐变切换</li>
+          <li>🔴🟢 <strong>WiFi 未连接</strong> — 交替闪烁</li>
+          <li>🌈 <strong>全部正常</strong> — 彩虹呼吸效果</li>
         </ol>
       </section>
 
-      <!-- 软件生态与开发 -->
+      <!-- 软件生态 -->
       <section id="software">
-        <h2>软件生态与开发</h2>
+        <h2><span class="section-icon">💻</span> 软件生态与开发</h2>
 
         <h3>开发环境</h3>
         <ul>
-          <li><strong>平台</strong>：PlatformIO（VS Code 插件）</li>
-          <li><strong>框架</strong>：Arduino-ESP32</li>
-          <li><strong>开发板</strong>：ESP32-DevKitC</li>
-          <li><strong>串口波特率</strong>：115200</li>
+          <li><strong>平台：</strong>PlatformIO（VS Code 插件）</li>
+          <li><strong>框架：</strong>Arduino-ESP32</li>
+          <li><strong>开发板：</strong>ESP32-DevKitC</li>
+          <li><strong>串口波特率：</strong>115200</li>
         </ul>
 
         <h3>依赖库</h3>
         <table class="data-table">
-          <thead>
-            <tr><th>库名</th><th>用途</th></tr>
-          </thead>
+          <thead><tr><th>库名</th><th>版本</th><th>用途</th></tr></thead>
           <tbody>
-            <tr><td>U8g2</td><td>SH1106 OLED 显示驱动</td></tr>
-            <tr><td>Adafruit NeoPixel</td><td>WS2812 RGB LED 驱动</td></tr>
-            <tr><td>OneWire</td><td>1-Wire 总线协议</td></tr>
-            <tr><td>DallasTemperature</td><td>DS18B20 温度传感器</td></tr>
-            <tr><td>PubSubClient</td><td>MQTT 客户端</td></tr>
-            <tr><td>ArduinoJson</td><td>JSON 序列化与解析</td></tr>
-            <tr><td>Preferences</td><td>NVS 非易失存储</td></tr>
-            <tr><td>WebServer</td><td>HTTP REST API 服务器</td></tr>
+            <tr><td>U8g2</td><td>^2.34.0</td><td>SH1106 OLED 显示驱动</td></tr>
+            <tr><td>Adafruit NeoPixel</td><td>^1.12.0</td><td>WS2812 RGB LED 驱动</td></tr>
+            <tr><td>OneWire</td><td>^2.3.0</td><td>1-Wire 总线协议基础库</td></tr>
+            <tr><td>DallasTemperature</td><td>^3.9.0</td><td>DS18B20 温度传感器驱动</td></tr>
+            <tr><td>PubSubClient</td><td>^2.8</td><td>MQTT 客户端</td></tr>
+            <tr><td>ArduinoJson</td><td>^6.21.0</td><td>JSON 序列化与解析</td></tr>
+            <tr><td>WebServer</td><td>内置</td><td>HTTP REST API 服务</td></tr>
+            <tr><td>Preferences</td><td>内置</td><td>NVS 非易失存储</td></tr>
           </tbody>
         </table>
 
-        <h3>项目结构</h3>
+        <h3>项目文件结构</h3>
         <pre>
 PCT-100-008/
-├── PCT-100-008.ino      // 主程序入口
-├── display.cpp/h         // OLED 中文显示
-├── key.cpp/h             // KEY1 轮询检测
-├── exti.cpp/h            // KEY2 消抖与长按/短按识别
-├── relay.cpp/h           // 继电器输出控制
-├── SensorManager.cpp/h   // 传感器管理（光敏+温度）
-├── led_indicator.cpp/h   // WS2812 状态指示
-├── wifi_manager.cpp/h    // WiFi 管理与配网
-├── mqtt_config.cpp/h     // MQTT 配置存储（NVS）
-├── mqtt_manager.cpp/h    // MQTT 通信管理
-├── web_ui.cpp/h          // HTTP REST API 服务器
-└── version.h             // 版本信息
-        </pre>
+├── PCT-100-008.ino       # 主程序入口
+├── display.cpp/h          # OLED 中文显示
+├── key.cpp/h              # KEY1 轮询检测
+├── exti.cpp/h             # KEY2 消抖与长短按
+├── relay.cpp/h            # 继电器输出控制
+├── SensorManager.cpp/h    # 传感器管理
+├── led_indicator.cpp/h    # WS2812 状态指示
+├── wifi_manager.cpp/h     # WiFi 管理与配网
+├── mqtt_config.cpp/h      # MQTT 配置(NVS)
+├── mqtt_manager.cpp/h     # MQTT 通信管理
+├── web_ui.cpp/h           # HTTP API 服务器
+└── version.h              # 版本信息</pre>
       </section>
 
-      <!-- 外形尺寸与安装 -->
+      <!-- 外形尺寸 -->
       <section id="specs">
-        <h2>外形尺寸与安装</h2>
+        <h2><span class="section-icon">📐</span> 外形尺寸与安装</h2>
         <ul>
-          <li><strong>核心板尺寸</strong>：ESP32-DevKitC 约 48mm × 28mm</li>
-          <li><strong>建议底板</strong>：自行设计或选用洞洞板固定核心板与外设模块</li>
-          <li><strong>继电器模块</strong>：标准 2 路继电器扩展板，5V 供电</li>
-          <li><strong>OLED 模块</strong>：0.96 寸 128×64 I2C 模块，4 针接口</li>
-          <li><strong>安装建议</strong>：核心板与外设模块固定于绝缘底板，杜邦线连接时注意区分 3.3V 与 5V 供电</li>
+          <li><strong>核心板尺寸：</strong>ESP32-DevKitC 约 48mm × 28mm</li>
+          <li><strong>建议底板：</strong>自行设计或选用洞洞板固定核心板与外设模块</li>
+          <li><strong>继电器模块：</strong>标准 2 路继电器扩展板，5V 供电</li>
+          <li><strong>OLED 模块：</strong>0.96 寸 128×64 I²C，4 针接口</li>
+          <li><strong>安装建议：</strong>各模块固定于绝缘底板，杜邦线连接时注意区分 3.3V 与 5V 供电</li>
         </ul>
         <div class="info-box">
-          <strong>提示：</strong>建议在底板背面或侧面留出 USB 接口位置，方便后续烧录固件与串口调试。
+          <div><strong>提示：</strong>建议在底板背面或侧面留出 USB 接口位置，方便后续烧录固件与串口调试。</div>
         </div>
       </section>
 
-      <!-- 维护保养与故障处理 -->
+      <!-- 维护保养 -->
       <section id="maintenance">
-        <h2>维护保养与故障处理</h2>
+        <h2><span class="section-icon">🔧</span> 维护保养与故障处理</h2>
 
         <h3>常见问题排查</h3>
         <table class="data-table">
-          <thead>
-            <tr><th>现象</th><th>可能原因</th><th>解决方法</th></tr>
-          </thead>
+          <thead><tr><th>现象</th><th>可能原因</th><th>解决方法</th></tr></thead>
           <tbody>
-            <tr>
-              <td>OLED 无显示</td>
-              <td>I2C 接线错误 / 地址不匹配</td>
-              <td>检查 SDA/SCL 是否接反，确认地址为 0x3C</td>
-            </tr>
-            <tr>
-              <td>DS18B20 读数异常</td>
-              <td>缺少上拉电阻 / 接线松动</td>
-              <td>VCC 与 DATA 之间并联 4.7kΩ 电阻，检查接线</td>
-            </tr>
-            <tr>
-              <td>光敏读数始终为 0</td>
-              <td>ADC 引脚接错 / 分压电阻开路</td>
-              <td>确认光敏电阻接至 GPIO1，检查串联电阻</td>
-            </tr>
-            <tr>
-              <td>继电器不动作</td>
-              <td>供电不足 / 触发逻辑相反</td>
-              <td>确认继电器模块为 5V 供电，控制端 HIGH 有效</td>
-            </tr>
-            <tr>
-              <td>WiFi 无法连接</td>
-              <td>SSID/密码错误 / 信号弱</td>
-              <td>使用 <code>scan</code> 确认网络可见，重新 <code>connect</code></td>
-            </tr>
-            <tr>
-              <td>MQTT 连接失败</td>
-              <td>服务器地址错误 / 网络不通</td>
-              <td>检查 IP 和端口，确认设备可访问公网</td>
-            </tr>
-            <tr>
-              <td>WS2812 不亮</td>
-              <td>信号电平不足 / 电源不稳</td>
-              <td>3.3V 信号通常可直接驱动，必要时加电平转换</td>
-            </tr>
+            <tr><td>OLED 无显示</td><td>I²C 接线错误 / 地址不匹配</td><td>检查 SDA/SCL 是否接反，确认 0x3C</td></tr>
+            <tr><td>DS18B20 读数异常</td><td>缺少上拉电阻 / 接线松动</td><td>VCC-DATA 并联 4.7kΩ，检查连接</td></tr>
+            <tr><td>光敏读数始终为 0</td><td>ADC 引脚接错 / 分压开路</td><td>确认光敏接 GPIO1，检查串联电阻</td></tr>
+            <tr><td>继电器不动作</td><td>供电不足 / 触发逻辑相反</td><td>确认 5V 供电，控制端 HIGH 有效</td></tr>
+            <tr><td>WiFi 无法连接</td><td>SSID/密码错误 / 信号弱</td><td>先用 <code>scan</code> 确认网络，重新 <code>connect</code></td></tr>
+            <tr><td>MQTT 连接失败</td><td>服务器地址错误 / 网络不通</td><td>检查 IP 端口，确认可访问公网</td></tr>
+            <tr><td>WS2812 不亮</td><td>信号电平不足 / 电源不稳</td><td>3.3V 通常可直接驱动，必要时加电平转换</td></tr>
           </tbody>
         </table>
 
         <h3>固件升级</h3>
-        <p>通过 USB 连接 ESP32 开发板，在 PlatformIO 中点击 Upload 即可烧录最新固件。烧录前请确保 KEY1 总开关处于合上（使能）状态，以便观察升级后的运行效果。</p>
+        <p>USB 连接 ESP32，PlatformIO 点击 Upload 即可烧录。烧录前请确保 KEY1 总开关合上，以便观察运行效果。</p>
 
         <h3>版本历史</h3>
-        <ul>
-          <li><span class="tag">V1.2</span> 当前版本 — 统一串口命令分发、新增 HTTP REST API、优化 LED 状态指示逻辑</li>
-          <li><span class="tag">V1.0.0</span> 早期版本 — FreeRTOS 双任务架构，基础 MQTT 与传感器功能</li>
-        </ul>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-badge current">V1.2 当前</div>
+            <div>统一串口命令分发、新增 HTTP REST API、优化 WS2812 灯效逻辑</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-badge">V1.0.0</div>
+            <div>FreeRTOS 双任务架构，基础 MQTT 与传感器功能</div>
+          </div>
+        </div>
       </section>
 
     </main>
   </div>
 
-  <footer>© 2026 PCT-100 Project V1.2</footer>
+  <footer>© 2026 PCT-100 化工控制实训装置 V1.2 &nbsp;|&nbsp; Designed for Chemical Automation Education</footer>
 
 </body>
 </html>
